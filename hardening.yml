@@ -1,8 +1,8 @@
 ---
 - name: Start Harening  your operation system
-  hosts: arvan
+  hosts: all
   gather_facts: yes
   roles:
-    #   - os_hardening
-    #   - ssh_hardening
+    - os_hardening
+    - ssh_hardening
     - task_class

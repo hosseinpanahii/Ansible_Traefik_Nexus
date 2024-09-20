@@ -1,0 +1,23 @@
+---
+- name: make sure chronyd is installed
+  apt:
+   name: chrony
+   state: latest
+   update_cache: yes
+
+- name: deploy chrony.conf template
+  template:
+   src: templates/etc/chrony.conf.j2
+   dest: /etc/chrony.conf
+   owner: root
+   group: root
+   mode: 0644
+   backup: yes
+- name: set timezone to Europe/London
+  timezone:
+    name: Asia/Tehran
+
+- name: Restart chronyd
+  service:
+    name: chronyd
+    state: restarted

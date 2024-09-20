@@ -1,0 +1,25 @@
+---
+- name: install lynis package
+  apt:
+    name: lynis
+    state: present
+- name: Get Score of Hardening
+  shell: |
+     lynis audit system --no-colors | grep "Hardening index"
+  register: score   
+     #  args:
+     #    creates: score.txt
+     #- name: Store file into /tmp/fetched/host.example.com/tmp/somefile
+     #  ansible.builtin.fetch:
+     #    src: ./score.txt
+     #    dest: /tmp/
+     #    flat: yes
+     #      #- name: read content of hardening score  
+     #      #  command: scp 
+     #      #    #  register: score
+     #      #    #- name: Show Hardening Score
+- ansible.builtin.debug:    
+  #    msg: "the value of foo.txt is {{ lookup('ansible.builtin.file', '/tmp/score.txt') }}" 
+     msg: "Your score after hardening is: {{score.stdout}}"
+    #    # debug: var=natije
+    #    #msg: '{{ Result_Lynis.stdout_lines | select("Hardening index") | list }}'

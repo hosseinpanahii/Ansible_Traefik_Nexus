@@ -1,0 +1,9 @@
+---
+# handlers file for task_class
+- name: Restart sysctl
+  ansible.builtin.service:
+    name: systemd-sysctl
+    state: restarted
+  when:
+    - ansible_virtualization_type not in ["container", "docker", "podman"]
+

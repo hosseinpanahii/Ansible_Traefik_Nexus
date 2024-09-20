@@ -1,0 +1,46 @@
+---
+# tasks file for 
+#- name: backup of repo file 
+#  shell: |
+#    cp /etc/apt/sources.list /etc/apt/sources.list.bak
+#    echo "" > /etc/apt/sources.list
+#- name: add iran repository to your operation system
+#  lineinfile:
+#    path: /etc/apt/sources.list
+#    line: deb http://mirror.arvancloud.ir/ubuntu {{ansible_distribution_release}} universe
+#    line: 
+#     line: deb https://mirror.iranserver.com/ubuntu {{ansible_distribution_release}} main restricted universe multiverse
+#     line: deb https://mirror.iranserver.com/ubuntu {{ansible_distribution_release}}-updates main restricted universe multiverse
+#     line: deb https://mirror.iranserver.com/ubuntu {{ansible_distribution_release}}-security main restricted universe multiverse
+#     line: deb https://mirror.iranserver.com/ubuntu {{ansible_distribution_release}}-backports main restricted universe multiverse
+#- name: update and upgrade operation system
+#  apt: 
+#    update_cache: yes
+#    upgrade: yes
+#
+#- name: copy requiremet file to managed host
+#  copy:
+#    src: ./requirments.txt
+#    dest: /tmp/requirments.txt
+#    owner: root
+#    group: root
+#    mode: '0644'
+#- name: get the file contents
+#  command: cat /tmp/requirments.txt 
+#  register: my_apps
+#- name: install Requirments application
+#  apt:
+#    name: "{{item}}"
+#  with_items: "{{my_apps.stdout_lines}}"
+#- name: config NTP with Chrony
+#  import_tasks: chrony.yml
+#- name: config Docker 
+#  import_tasks: docker.yml
+#- name: Config UFW 
+#  import_tasks: ufw.yml
+#- name: install Lynis and Get score of hardenning
+#  import_tasks: lynis.yml
+#- name: install dependency docker-compose and pull nexus and traefik
+#  import_task: dep_docker.yml
+- name: install and config Nexus with Traefik
+  import_tasks: nexus.yml

@@ -1,0 +1,31 @@
+---
+manage_ufw: true
+
+ufw_outgoing_traffic:
+  - 22
+  - 53
+  - 80
+  - 123
+  - 443
+  - 853
+
+ufw_rate_limit: false
+################## Nexus and Traefik variables ###############
+TRAEFIK_ACME_EMAIL: rdppanahi@gmail.com
+TRAEFIK_SUB_DOMAIN: traefiks
+DOMAIN_NAME: panmal.ir
+WEB_AUTH_USER: admin
+WEB_AUTH_PASS: $$apr1$$exaHm5DI$$KmjKX2h/UQLh.delr9rh21
+NEXUS_SUB_DOMAIN: reg
+HUB_SUB_DOMAIN: hubs
+REPO_DIRE_NAME: /var/services
+NEXUS_ADMIN_USERNAME: admin
+NEXUS_ADMIN_PASSWORD: admin
+NEXUS_SERVICE_URL: "https://{{ NEXUS_SUB_DOMAIN }}.{{ DOMAIN_NAME }}"
+NEXUS_REPO_USERNAME: repo
+NEXUS_REPO_PASSWORD: repo
+NEXUS_REPO_EMAIL: rdppanahi@gmail.com
+DOCKER_REPO_BLOBSTORE: docker-private-proxy
+DOCKER_REPO_HOSTED_BLOBSTORE: docker-private-hosted
+DOCKER_REPO_APT_BLOBSTORE: debian
+REPO_DIRE_NAME: /var/services
